@@ -1,0 +1,4 @@
+happybase
+kafka-python
+msgpack-python
+python-snappy
