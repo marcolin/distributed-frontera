@@ -92,6 +92,7 @@ class ScoringWorker(object):
             type = msg[0]
             if type == 'add_seeds':
                 _, seeds = msg
+                for seed in seeds: seed.meta['jid'] = self.job_id
                 results.extend(self.on_add_seeds(seeds))
                 continue
 
@@ -142,7 +143,7 @@ class ScoringWorker(object):
         output = []
         for fingerprint, score in scores.iteritems():
             seed = seed_map[fingerprint]
-            logger.debug('URL: ', seed.url)
+            logger.debug('URL: %s', seed.url)
             if score is not None:
                 encoded = self._encoder.encode_update_score(
                     seed.meta['fingerprint'],
