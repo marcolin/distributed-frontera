@@ -114,21 +114,12 @@ class FrontierWorker(object):
                         for seed in seeds:
                             logger.debug('URL: ', seed.url)
                         self._backend.add_seeds(seeds)
-
                     if type == 'page_crawled':
                         _, response, links = msg
                         logger.debug("Page crawled %s", response.url)
                         if response.meta['jid'] != self.job_id:
                             continue
-
-                        # FIXME: a dirty hack
-                        filtered = []
-                        for link in links:
-                            if link.url.find('locanto') != -1:
-                                continue
-
-                            filtered.append(link)
-                        self._backend.page_crawled(response, filtered)
+                        self._backend.page_crawled(response, links)
                     if type == 'request_error':
                         _, request, error = msg
                         if request.meta['jid'] != self.job_id:
