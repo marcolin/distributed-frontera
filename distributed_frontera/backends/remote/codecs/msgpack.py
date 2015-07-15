@@ -6,20 +6,20 @@ def _prepare_request_message(request):
     def serialize(obj):
         """Recursively walk object's hierarchy."""
         if isinstance(obj, (bool, int, long, float, basestring)):
-          return obj
+            return obj
         elif isinstance(obj, dict):
-          obj = obj.copy()
-          for key in obj:
-            obj[key] = serialize(obj[key])
-          return obj
+            obj = obj.copy()
+            for key in obj:
+                obj[key] = serialize(obj[key])
+            return obj
         elif isinstance(obj, list):
-          return [serialize(item) for item in obj]
+            return [serialize(item) for item in obj]
         elif isinstance(obj, tuple):
-          return tuple(serialize([item for item in obj]))
+            return tuple(serialize([item for item in obj]))
         elif hasattr(obj, '__dict__'):
-          return serialize(obj.__dict__)
+            return serialize(obj.__dict__)
         else:
-          return None
+            return None
     return [request.url, request.headers, request.cookies, serialize(request.meta)]
 
 def _prepare_response_message(response, send_body):
