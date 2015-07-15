@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
-from happybase import Connection
-
-from frontera import Backend
-from frontera.distributed.worker.partitioner import Crc32NamePartitioner
-from frontera.distributed.worker.utils import chunks
-from frontera.utils.url import parse_domain_from_url_fast
-
-from struct import pack, unpack, unpack_from
+from struct import pack, unpack
 from datetime import datetime
 from calendar import timegm
 from time import time
 from binascii import hexlify, unhexlify
 from zlib import crc32
-from msgpack import Unpacker, Packer
 from io import BytesIO
 from random import choice
+
+from happybase import Connection
+from frontera.utils.url import parse_domain_from_url_fast
+from msgpack import Unpacker, Packer
+
+from frontera import Backend
+from distributed_frontera.worker.partitioner import Crc32NamePartitioner
+from distributed_frontera.worker.utils import chunks
 
 
 

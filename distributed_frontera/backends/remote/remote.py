@@ -1,15 +1,14 @@
 import time
-
-from codecs.msgpack import Encoder, Decoder
+from logging import getLogger, StreamHandler
 
 from kafka import KafkaClient, SimpleConsumer, KeyedProducer
 from kafka.common import BrokerResponseError, OffsetOutOfRangeError, MessageSizeTooLargeError
 from kafka.protocol import CODEC_SNAPPY
-from logging import getLogger, StreamHandler
-
-from frontera import Backend, Settings
 from frontera.core import OverusedBuffer
-from frontera.distributed.worker.partitioner import FingerprintPartitioner
+
+from codecs.msgpack import Encoder, Decoder
+from frontera import Backend, Settings
+from distributed_frontera.worker.partitioner import FingerprintPartitioner
 
 
 class TestManager(object):

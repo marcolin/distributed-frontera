@@ -7,16 +7,15 @@ from twisted.internet import reactor
 from kafka import KafkaClient, KeyedProducer, SimpleConsumer
 from kafka.common import OffsetOutOfRangeError
 from kafka.protocol import CODEC_SNAPPY
-
-from frontera.distributed.backends.remote.codecs.msgpack import Decoder, Encoder
 from frontera.core.manager import FrontierManager
-from frontera.settings import Settings
-from frontera.distributed.worker.partitioner import Crc32NamePartitioner
 from frontera.utils.url import parse_domain_from_url_fast
+
+from distributed_frontera.backends.remote.codecs.msgpack import Decoder, Encoder
+from distributed_frontera.settings import Settings
+from distributed_frontera.worker.partitioner import Crc32NamePartitioner
 from utils import CallLaterOnce
 from server import WorkerJsonRpcService
 from offsets import Fetcher
-
 
 logging.basicConfig()
 logger = logging.getLogger("cf")

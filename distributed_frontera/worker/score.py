@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-from frontera.settings import Settings
-from frontera.distributed.backends.remote.codecs.msgpack import Decoder, Encoder
-from frontera.core.manager import FrontierManager
-from kafka import KafkaClient, SimpleProducer, SimpleConsumer
-from kafka.common import OffsetOutOfRangeError
-from kafka.protocol import CODEC_SNAPPY
-
 from time import asctime
 import logging
 from argparse import ArgumentParser
 from importlib import import_module
 
+from frontera.core.manager import FrontierManager
+from kafka import KafkaClient, SimpleProducer, SimpleConsumer
+from kafka.common import OffsetOutOfRangeError
+from kafka.protocol import CODEC_SNAPPY
+
+from distributed_frontera.settings import Settings
+from distributed_frontera.backends.remote.codecs.msgpack import Decoder, Encoder
 
 logging.basicConfig()
 logger = logging.getLogger("score")

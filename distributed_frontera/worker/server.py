@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from twisted.web import server, resource
-from utils import listen_tcp
-
 from logging import getLogger
 from json import JSONDecoder, JSONEncoder
 from sys import exc_info
 from traceback import format_exception
+
+from twisted.web import server, resource
+
+from distributed_frontera.worker.utils import listen_tcp
 
 logger = getLogger("cf-server")
 
